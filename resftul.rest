@@ -1,0 +1,89 @@
+
+### Database Api
+GET   http://localhost:4000/api/data 
+
+
+### Apps API
+POST http://localhost:4000/api/addApps
+Content-Type: application/json
+
+{
+    "Name" : "ccure",
+    "Type" : "Apps",
+    "Version" : "23",
+    "License" : "MIT"
+}
+###
+GET http://localhost:4000/api/allApps
+### User API 
+
+POST http://localhost:4000/api/addUser
+Content-Type: application/json
+
+{
+    "Name": "sam",
+    "Password": "passwd",
+    "Rights":{
+        "Read": 0,
+        "Write":0,
+        "Execute":1
+    }
+}
+###
+GET http://localhost:4000/api/allUsers
+### Hardware API 
+
+POST http://localhost:4000/api/addHardware
+Content-Type: application/json
+
+{
+    "MakeModel": "String",
+    "ServiceTagSerialNo": "Strings",
+    "CPU": "String",
+    "RAM": "String",
+    "HDD": "String",
+    "Graphic": "String",
+    "DVDDrive": "String",
+    "PowerSupply": "String",
+    "PowerSettoNever": false,
+    "Apps": ["62320ff2db35506dc2e9dc76","62320ff2db35506dc2e9dc76","62320ff2db35506dc2e9dc76"],
+    "UpdateInstalled": {
+        "Status": false,
+        "DateOfInstalled": "2000-10-31T01:30:00.000-05:00",
+        "Type": "String"
+    },
+    "Credentials":[ {
+        "AppsName": "62320ff2db35506dc2e9dc76",
+        "UserName": "String",
+        "Password": "String"
+    },{
+        "AppsName": "62320ff2db35506dc2e9dc76",
+        "UserName": "String",
+        "Password": "String"
+    },{
+        "AppsName": "62320ff2db35506dc2e9dc76",
+        "UserName": "String",
+        "Password": "String"
+    }
+    ]
+}
+###
+GET http://localhost:4000/api/allHardwares
+### Hardware API 
+
+### Site API
+
+POST http://localhost:4000/api/addsite
+content-type: application/json
+
+{
+    "Name": "Health Ministrys",
+    "Addresss": "req.body.Address",
+    "ContactNumber": "0702109223",
+    "Note": "req.body.Note",
+    "Hardware": ["6232281dfc771951b89a874a","6232281dfc771951b89a874a"]
+}
+
+###
+GET http://localhost:4000/api/allSites
+### Hardware API 
