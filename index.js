@@ -12,12 +12,9 @@ app.use(bodyParser.json())
 //DB Connection
 mongoose.connect(process.env.DBCONNECTION,
   {
-
     keepAlive: 1,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-
-
   })
 mongoose.connection
   .once('open', () => {
@@ -35,6 +32,12 @@ app.use('/api', get)
 // POST API
 const post = require('./routes/post.routes')
 app.use('/api', post)
+
+//login API 
+const login = require('./routes/login.routes')
+app.use('/login', login)
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

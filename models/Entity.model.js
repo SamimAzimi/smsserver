@@ -9,6 +9,7 @@ const App = Schema({
 })
 const User = Schema({
     'Name': String,
+    'ID': String,
     'Password': String,
     'Rights': {
         "Read": Boolean,

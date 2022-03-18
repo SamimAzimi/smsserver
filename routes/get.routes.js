@@ -20,14 +20,15 @@ router.get('/allSites', (req, res) => {
 
     SiteModel.find().populate('Hardware').exec(function (err, results) {
 
-        console.log(results)
-
+        res.send(results)
     });
 })
 router.get('/allHardwares', async (req, res) => {
 
-    var findHardware = await HardwareModel.find()
-    console.log(findHardware)
+    HardwareModel.find().populate('Apps').populate('Credentials.AppsName').exec(function (err, results) {
+
+        res.send(results[0])
+    });
 })
 
 module.exports = router

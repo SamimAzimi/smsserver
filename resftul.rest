@@ -84,6 +84,33 @@ content-type: application/json
     "Hardware": ["6232281dfc771951b89a874a","6232281dfc771951b89a874a"]
 }
 
-###
+######
+
+
 GET http://localhost:4000/api/allSites
 ### Hardware API 
+
+
+#### user API 
+POST http://localhost:4000/login/register HTTP/1.1
+Content-Type: application/json  
+
+{
+    "Name": "String",
+    "ID": "123",
+    "Password": "123",
+    "Rights": {
+        "Read":true,
+        "Write": false,
+        "Execute": true
+    }
+}
+
+###LOGIN 
+POST http://localhost:4000/login/signIn 
+Content-Type: application/json
+
+{
+    "ID": "123",
+    "Password": "123"
+}
