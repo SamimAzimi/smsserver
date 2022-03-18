@@ -24,7 +24,9 @@ mongoose.connection
   .on('error', error => {
     console.log("Error", error)
   })
-
+app.get('/', (req, res) => {
+  res.send('I am Alive')
+})
 // GET API
 const get = require('./routes/get.routes')
 app.use('/api', get)
