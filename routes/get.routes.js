@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/allApps', async (req, res) => {
     var findApp = await AppModel.find()
-    console.log(findApp)
+     res.send(findApp)
 })
 router.get('/allUsers', async (req, res) => {
 

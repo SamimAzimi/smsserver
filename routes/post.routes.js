@@ -88,7 +88,7 @@ router.post('/addSite', async (req, res) => {
             'Note': req.body.Note,
             'Hardware': hardwarereerenceArray,
         })
-        site.save().then(() => res.send("User Saved Successfully")).catch(err => console.log(err._message))
+        site.save().then(() => res.send("User Saved Successfully")).catch(err => console.log(err))
     } else {
         res.send(`${findSite.Name} User Already Exist`)
     }
