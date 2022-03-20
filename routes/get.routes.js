@@ -18,16 +18,17 @@ router.get('/allUsers', async (req, res) => {
 })
 router.get('/allSites', (req, res) => {
 
-    SiteModel.find().populate('Hardware').exec(function (err, results) {
+    SiteModel.find().populate('Hardware').populate('Hardware.Apps').exec(function (err, results) {
 
         res.send(results)
+        console.log(results)
     });
 })
 router.get('/allHardwares', async (req, res) => {
 
     HardwareModel.find().populate('Apps').populate('Credentials.AppsName').exec(function (err, results) {
 
-        res.send(results)
+        res.send(results) 
     });
 })
 
