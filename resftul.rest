@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
     "MakeModel": "String",
-    "ServiceTagSerialNo": "Strings",
+    "ServiceTagSerialNo": "Stringss",
     "CPU": "String",
     "RAM": "String",
     "HDD": "String",

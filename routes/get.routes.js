@@ -9,12 +9,12 @@ const router = express.Router();
 
 router.get('/allApps', async (req, res) => {
     var findApp = await AppModel.find()
-     res.send(findApp)
+    res.send(findApp)
 })
 router.get('/allUsers', async (req, res) => {
 
     var findUser = await UserModel.find()
-    console.log(findUser)
+    res.send(findUser)
 })
 router.get('/allSites', (req, res) => {
 
@@ -27,7 +27,7 @@ router.get('/allHardwares', async (req, res) => {
 
     HardwareModel.find().populate('Apps').populate('Credentials.AppsName').exec(function (err, results) {
 
-        res.send(results[0])
+        res.send(results)
     });
 })
 
