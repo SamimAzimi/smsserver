@@ -1,10 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 // const { DatabaseModel } = require('../models/Entity.model')
-const { AppModel } = require('../models/Entity.model')
-const { UserModel } = require('../models/Entity.model')
-const { HardwareModel } = require('../models/Entity.model')
-const { SiteModel } = require('../models/Entity.model')
+
+const { UserModel,HardwareModel,AppModel, SiteModel } = require('../models/Entity.model')
 const router = express.Router();
 
 
@@ -93,4 +91,53 @@ router.post('/addSite', async (req, res) => {
         res.send(`${findSite.Name} User Already Exist`)
     }
 })
+
+router.post('/field',  (req, res) => {
+    const field = req.body
+    const value = field.value
+    const name = field.name
+    const Model =field.model
+//    "Name": {$regex:  `/${field.value}$/`, $options:"i"
+    if(field.model=="App"){
+
+   AppModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
+        if(err){
+            
+            console.log(err)
+        }
+        console.log(adventure)
+    }).limit(5);
+    }else if (field.model=="Hardware"){
+        HardwareModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
+        if(err){
+            
+            console.log(err)
+        }
+        console.log(adventure)
+    }).limit(5);
+    }else if (field.name=="User"){
+        UserModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
+        if(err){
+            
+            console.log(err)
+        }
+        console.log(adventure)
+    }).limit(5);
+
+
+
+    }else if (field.name=="Site"){
+        SiteModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
+        if(err){
+            
+            console.log(err)
+        }
+        console.log(adventure)
+    }).limit(5);
+
+    }
+})
+
+
+
 module.exports = router
