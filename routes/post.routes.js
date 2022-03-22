@@ -96,16 +96,16 @@ router.post('/field',  (req, res) => {
     const field = req.body
     const value = field.value
     const name = field.name
-    const Model =field.model
+  
 //    "Name": {$regex:  `/${field.value}$/`, $options:"i"
-    if(field.model=="App"){
-
-   AppModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
+    if(field.model=="Apps"){
+        console.log(req.body)
+        AppModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
         if(err){
             
             console.log(err)
         }
-        console.log(adventure)
+       res.send(adventure)
     }).limit(5);
     }else if (field.model=="Hardware"){
         HardwareModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
@@ -113,7 +113,7 @@ router.post('/field',  (req, res) => {
             
             console.log(err)
         }
-        console.log(adventure)
+        res.send(adventure)
     }).limit(5);
     }else if (field.name=="User"){
         UserModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
@@ -121,18 +121,18 @@ router.post('/field',  (req, res) => {
             
             console.log(err)
         }
-        console.log(adventure)
+        res.send(adventure)
     }).limit(5);
 
 
 
-    }else if (field.name=="Site"){
+    }else if (field.name=="Sites"){
         SiteModel.find({ name:{ $regex: new RegExp (value)} },{_id:0,_v:0}, function (err, adventure) {
         if(err){
             
             console.log(err)
         }
-        console.log(adventure)
+       res.send(adventure)
     }).limit(5);
 
     }
