@@ -28,7 +28,7 @@ router.get('/allHardwares', async (req, res) => {
 
     HardwareModel.find().populate('Apps').populate('Credentials.AppsName').exec(function (err, results) {
 
-        res.send(results) 
+        res.send(results)
     });
 })
 
