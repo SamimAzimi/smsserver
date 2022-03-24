@@ -2,10 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const App = Schema({
-    'Name': String,
-    'Type': String,
-    'Version': String,
-    'License': String,
+
+
 })
 const User = Schema({
     'Name': String,
@@ -53,7 +51,6 @@ const Site = Schema({
     'Note': String,
     'Hardware': [{ type: Schema.Types.ObjectId, ref: 'HardwareModel' }],
 })
-
 
 
 const AppModel = mongoose.model('AppModel', App)

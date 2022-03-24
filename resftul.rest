@@ -1,33 +1,4 @@
 
-### Database Api
-GET   http://localhost:4000/api/data 
-
-
-### Apps API
-POST http://localhost:4000/api/addApps
-Content-Type: application/json
-
-{
-    "Name" : "ccure",
-    "Type" : "Apps",
-    "Version" : "23",
-    "License" : "MIT"
-}
-###
-GET http://localhost:4000/api/allApps
-### User API 
-#### 
-POST http://localhost:4000/api/field
-Content-Type: application/json
-
-{
-    "name":"Version",
-    "value": "2.6.4",
-    "model": "App"
-}
-
-
-
 #####
 POST http://localhost:4000/api/addUser
 Content-Type: application/json
@@ -43,64 +14,6 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:4000/api/allUsers
-### Hardware API 
-
-POST http://localhost:4000/api/addHardware
-Content-Type: application/json
-
-{
-    "MakeModel": "yak",
-    "ServiceTagSerialNo": "two",
-    "CPU": "String",
-    "RAM": "String",
-    "HDD": "String",
-    "Graphic": "String",
-    "DVDDrive": "String",
-    "PowerSupply": "String",
-    "PowerSettoNever": false,
-    "Apps": ["62320ff2db35506dc2e9dc76","62320ff2db35506dc2e9dc76","62320ff2db35506dc2e9dc76"],
-    "UpdateInstalled": {
-        "Status": false,
-        "DateOfInstalled": "2000-10-31T01:30:00.000-05:00",
-        "Type": "String"
-    },
-    "Credentials":[ {
-        "AppsName": "62320ff2db35506dc2e9dc76",
-        "UserName": "String",
-        "Password": "String"
-    },{
-        "AppsName": "62320ff2db35506dc2e9dc76",
-        "UserName": "String",
-        "Password": "String"
-    },{
-        "AppsName": "62320ff2db35506dc2e9dc76",
-        "UserName": "String",
-        "Password": "String"
-    }
-    ]
-}
-###
-GET http://localhost:4000/api/allHardwares
-### Hardware API 
-
-### Site API
-
-POST http://localhost:4000/api/addsite
-content-type: application/json
-
-{
-    "Name": "Health Ministrys",
-    "Addresss": "req.body.Address",
-    "ContactNumber": "0702109223",
-    "Note": "req.body.Note",
-    "Hardware": ["6232281dfc771951b89a874a","6232281dfc771951b89a874a"]
-}
-
-######
-
-
-GET http://localhost:4000/api/allSites
-### Hardware API 
 
 
 #### user API 
@@ -126,3 +39,56 @@ Content-Type: application/json
     "ID": "123",
     "Password": "123"
 }
+
+
+### 
+POST  http://localhost:4000/api/record 
+Content-Type: application/json
+
+{
+    "siteName": "UNREGISTERED",
+    "siteAddress": "Pickering",
+    "siteContactNumber": "0784591495",
+    "siteNote": "ina gandagi",
+    "network":{
+        "IP": "10.10.10.5",
+        "subnetMask": "255.255.0.0",
+        "gateway": "1.1.1.1", 
+        "sourceFile":"D:/mainsource"
+    },
+    "hardware":[ {
+        "MakeModel": "FORCE",
+        "ServiceTagSerialNo": "SN45s5DNSFd546",
+        "CPU":"CoreI9",
+        "CPUQt":"6",
+        "RAM": "23",
+        "HDD": "46",
+        "Graphic": "10",
+        "DVDDrive": "Beat",
+        "PowerSupply": "electron",
+        "PowerSettoNever": true
+    }],
+    "apps": [{
+        "appsName" : "angoli",
+        "appsVersion" : "2.3"
+    }],
+    "Credentials":{
+        "UserName": "Sales",
+        "Password": "saleastjingo"
+    },
+    "DB":{
+        "DBinstalled": true,
+        "DBname": "SQL SERVER 2050",
+        "DBVersion": "20.20.20",
+        "DBsaPassword": "janJigar@123"
+    },
+    "OS": {
+        "OSname": "Windows",
+        "OSVersion": "Server 2010",
+        "UpdateInstalled": "No",
+        "UpdateTurnedOff": true
+    }
+}
+#### 
+
+GET http://localhost:4000/api/allrecords HTTP/1.1

@@ -1,10 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const { UserModel } = require('../models/Entity.model')
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const UserModel = require('../models/User.model')
 
 
 

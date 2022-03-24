@@ -27,13 +27,11 @@ mongoose.connection
 app.get('/', (req, res) => {
   res.send('I am Alive')
 })
-// GET API
-const get = require('./routes/get.routes')
-app.use('/api', get)
 
-// POST API
-const post = require('./routes/post.routes')
-app.use('/api', post)
+
+// Records API
+const Record = require('./routes/records.routes')
+app.use('/api', Record)
 
 //login API 
 const login = require('./routes/login.routes')
