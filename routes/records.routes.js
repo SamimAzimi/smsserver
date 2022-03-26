@@ -46,12 +46,18 @@ router.post('/addToSite', (req, res) => {
 
 
 router.post('/record', (req, res) => {
+    const RecordExist = RecordModel.findOne({ siteName: req.body.siteName })
+    if (!RecordExist) {
+        var record = new RecordModel(req.body)
+        record.save().then(() => res.send('Record Saved Successfully')).catch(err => {
+            res.send(err._message)
 
-    var record = new RecordModel(req.body)
-    record.save().then(() => res.send('Record Saved Successfully')).catch(err => {
-        res.send(err._message)
+        })
 
-    })
+    } else {
+        res.send(`a Site by the Name ${req.body.siteName} Already Exist`)
+    }
+
 })
 
 router.get('/allrecords', (req, res) => {
