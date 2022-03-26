@@ -33,7 +33,7 @@ const Record = Schema({
         "appsPassword": String
 
     }],
-    "DB":[{
+    "DB": [{
         "DBinstalled": Boolean,
         "DBname": String,
         "DBVersion": String,

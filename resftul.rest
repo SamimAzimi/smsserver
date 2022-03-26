@@ -1,3 +1,24 @@
+###
+POST http://localhost:4000/api/addToSite 
+Content-Type: application/json
+
+{
+    "subDocument":"App", 
+    "recordID": "623ef47b3d1d8c63f39e8fe9", 
+    "newSub": {
+        "appsName": "test3",
+        "appsVersion": "test3",
+        "appsUserName": "test3",
+        "appsPassword": "test3"
+    }
+}
+
+
+
+
+
+
+
 
 #####
 POST http://localhost:4000/api/addUser
