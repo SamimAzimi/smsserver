@@ -29,12 +29,10 @@ const Record = Schema({
     'apps': [{
         'appsName': String,
         'appsVersion': String,
+        "appsUserName": String,
+        "appsPassword": String
 
     }],
-    'Credentials': {
-        "UserName": String,
-        "Password": String,
-    },
     "DB": {
         "DBinstalled": Boolean,
         "DBname": String,

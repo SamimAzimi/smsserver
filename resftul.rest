@@ -70,12 +70,10 @@ Content-Type: application/json
     }],
     "apps": [{
         "appsName" : "angoli",
-        "appsVersion" : "2.3"
+        "appsVersion" : "2.3" ,
+        "appsUserName":"jan",
+        "appsPassword":"jan",
     }],
-    "Credentials":{
-        "UserName": "Sales",
-        "Password": "saleastjingo"
-    },
     "DB":{
         "DBinstalled": true,
         "DBname": "SQL SERVER 2050",
