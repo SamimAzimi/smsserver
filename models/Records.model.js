@@ -33,18 +33,18 @@ const Record = Schema({
         "appsPassword": String
 
     }],
-    "DB": {
+    "DB":[{
         "DBinstalled": Boolean,
         "DBname": String,
         "DBVersion": String,
         "DBsaPassword": String,
-    },
-    "OS": {
+    }],
+    "OS": [{
         "OSname": String,
         "OSVersion": String,
         "UpdateInstalled": String,
         "UpdateTurnedOff": Boolean,
-    }
+    }]
 })
 
 module.exports = mongoose.model('RecordModel', Record)
