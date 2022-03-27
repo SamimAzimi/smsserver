@@ -45,8 +45,8 @@ router.post('/addToSite', (req, res) => {
 
 
 
-router.post('/record', (req, res) => {
-    const RecordExist = RecordModel.findOne({ siteName: req.body.siteName })
+router.post('/record',async (req, res) => {
+    const RecordExist = await RecordModel.findOne({ siteName: req.body.siteName })
     if (!RecordExist) {
         var record = new RecordModel(req.body)
         record.save().then(() => res.send('Record Saved Successfully')).catch(err => {
