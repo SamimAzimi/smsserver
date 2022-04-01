@@ -1,113 +1,68 @@
-###
-POST http://localhost:4000/api/addToSite 
-Content-Type: application/json
-
-{
-    "subDocument":"App", 
-    "recordID": "623ef47b3d1d8c63f39e8fe9", 
-    "newSub": {
-        "appsName": "test3",
-        "appsVersion": "test3",
-        "appsUserName": "test3",
-        "appsPassword": "test3"
-    }
-}
-
-
-
-
-
-
-
-
-#####
-POST http://localhost:4000/api/addUser
-Content-Type: application/json
-
-{
-    "Name": "sam",
-    "Password": "passwd",
-    "Rights":{
-        "Read": 0,
-        "Write":0,
-        "Execute":0
-    }
-}
-###
-GET http://localhost:4000/api/allUsers
-
-
-#### user API 
-POST http://localhost:4000/login/register HTTP/1.1
-Content-Type: application/json  
-
-{
-    "Name": "String",
-    "ID": "123",
-    "Password": "123",
-    "Rights": {
-        "Read":true,
-        "Write": false,
-        "Execute": true
-    }
-}
-
-###LOGIN 
-POST https://servicemanagementsystem.herokuapp.com/login/signIn 
-Content-Type: application/json
-
-{
-    "ID": "123",
-    "Password": "123"
-}
-
 
 ### 
-POST  http://localhost:4000/api/record 
+POST http://localhost:4000/api/site
 Content-Type: application/json
 
 {
-    "siteName": "UNREGISTERED",
+    "siteName": "UNREGID",
     "siteAddress": "Pickering",
     "siteContactNumber": "0784591495",
-    "siteNote": "ina gandagi",
-    "network":{
-        "IP": "10.10.10.5",
-        "subnetMask": "255.255.0.0",
-        "gateway": "1.1.1.1", 
-        "sourceFile":"D:/mainsource"
+    "siteNote": "ina gandagi"
+}
+####
+POST http://localhost:4000/api/siteName 
+Content-Type: application/json
+
+{
+    "siteName":"UNREGID"
+}
+### 
+
+POST http://localhost:4000/api/hardwaretoapp
+Content-Type: application/json
+
+{
+    "recordID": "6244190577e06ddfac515e0a",
+    "data": {
+        "location":"london",
+        "type":"server",
+        "MakeModel": "yahoo",
+        "ServiceTagSerialNo": "SN45sdfFd546",
+        "CPU":"Core",
+        "RAM": "2",
+        "HDD": "4",
+        "Graphic": "1",
+        "DVDDrive": "Beats",
+        "PowerSupply": "electrons",
+        "sourceFile":"D:/mainsources",
+        "PowerSettoNever": false,
+        "RaidLevel" :"2", 
+         "OS": {
+        "OSname": "linux",
+        "OSVersion": "ubuntu",
+        "UserName": "sa",
+        "password":"mingo",
+        "UpdateInstalled": "yes",
+        "UpdateTurnedOff": false
+        },
+    "apps": {
+        "appsName" : "ccure",
+        "appsVersion" : "4" ,
+        "appsUserName":"man",
+        "appsPassword":"man"
     },
-    "hardware":[ {
-        "MakeModel": "FORCE",
-        "ServiceTagSerialNo": "SN45s5DNSFd546",
-        "CPU":"CoreI9",
-        "CPUQt":"6",
-        "RAM": "23",
-        "HDD": "46",
-        "Graphic": "10",
-        "DVDDrive": "Beat",
-        "PowerSupply": "electron",
-        "PowerSettoNever": true
-    }],
-    "apps": [{
-        "appsName" : "angoli",
-        "appsVersion" : "2.3" ,
-        "appsUserName":"jan",
-        "appsPassword":"jan",
-    }],
     "DB":{
-        "DBinstalled": true,
-        "DBname": "SQL SERVER 2050",
-        "DBVersion": "20.20.20",
-        "DBsaPassword": "janJigar@123"
-    },
-    "OS": {
-        "OSname": "Windows",
-        "OSVersion": "Server 2010",
-        "UpdateInstalled": "No",
-        "UpdateTurnedOff": true
+        "DBinstalled": false,
+        "DBname": "mongdb",
+        "DBVersion": "lastest",
+        "DBsaPassword": "jan"
+    },      
+    "network":{
+        "IP": "192.18.10.25",
+        "subnetMask": "255.0.0.0",
+        "gateway": "8.8.8.8"
+    }
     }
 }
-#### 
-
+####
 GET http://localhost:4000/api/allrecords HTTP/1.1

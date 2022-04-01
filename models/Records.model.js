@@ -7,44 +7,48 @@ const Record = Schema({
     'siteAddress': String,
     'siteContactNumber': Number,
     'siteNote': String,
-    'network': [{
-        "IP": String,
-        "subnetMask": String,
-        "gateway": String,
-        "sourceFile": String,
-
-    }],
     'hardware': [{
+        'location': String,
+        'type': String,
         'MakeModel': String,
         'ServiceTagSerialNo': String,
         'CPU': String,
-        'CPUQt': Number,
         'RAM': Number,
         'HDD': Number,
         'Graphic': String,
         'DVDDrive': String,
         'PowerSupply': String,
         'PowerSettoNever': Boolean,
-    }],
-    'apps': [{
-        'appsName': String,
-        'appsVersion': String,
-        "appsUserName": String,
-        "appsPassword": String
+        "sourceFile": String,
+        "RaidLevel": String,
+        "OS": {
+            "OSname": String,
+            "OSVersion": String,
+            "UserName": String,
+            "password": String,
+            "UpdateInstalled": String,
+            "UpdateTurnedOff": Boolean,
+        },
+        'apps': {
+            'appsName': String,
+            'appsVersion': String,
+            "appsUserName": String,
+            "appsPassword": String
 
+        },
+        "DB": {
+            "DBinstalled": Boolean,
+            "DBname": String,
+            "DBVersion": String,
+            "DBsaPassword": String,
+        },
+        'network': {
+            "IP": String,
+            "subnetMask": String,
+            "gateway": String,
+
+        }
     }],
-    "DB": [{
-        "DBinstalled": Boolean,
-        "DBname": String,
-        "DBVersion": String,
-        "DBsaPassword": String,
-    }],
-    "OS": [{
-        "OSname": String,
-        "OSVersion": String,
-        "UpdateInstalled": String,
-        "UpdateTurnedOff": Boolean,
-    }]
 })
 
 module.exports = mongoose.model('RecordModel', Record)
