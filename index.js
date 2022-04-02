@@ -1,14 +1,17 @@
 const express = require('express')
+const ExpresejsLayout = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 4000
 const app = express()
+const path = require('path')
 require('dotenv/config')
 var cors = require('cors');
 app.use(cors())
 app.use(bodyParser.json())
-
-
+// app.use(ExpresejsLayout)
+app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')))
 //DB Connection
 mongoose.connect(process.env.DBCONNECTION,
   {
@@ -27,6 +30,8 @@ mongoose.connection
 app.get('/', (req, res) => {
   res.send('I am Alive')
 })
+
+
 
 
 // Records API

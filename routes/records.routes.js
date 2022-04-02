@@ -3,8 +3,10 @@ const mongoose = require('mongoose')
 const { SiteModel, HardwareModel } = require('../models/Entity.model')
 const RecordModel = require('../models/Records.model')
 const router = express.Router();
-
-
+const fs = require('fs')
+var pdf = require("html-pdf");
+const ip = require("ip")
+const qrcode = require('qrcode')
 router.get('/allrecords', (req, res) => {
     var findRecord = SiteModel.find().populate('hardware').limit(100).then(result => {
         res.send(result)
@@ -197,6 +199,48 @@ router.post('/options', (req, res) => {
         })
     }
 
+
+})
+
+
+router.get('/pdf/:siteName', (req, res) => {
+    var html = fs.readFileSync("views/index.ejs", "utf8");
+    const options = {
+        format: "A4",
+        orientation: "landscape",
+        border: "5mm",
+    };
+    var time = new Date();
+    var date = time.getDate() + '/' + time.getDay() + '/' + time.getFullYear();
+    var findRecord = SiteModel.findOne({ 'siteName': req.params.siteName }).populate('hardware').then(result => {
+        if (result === null) {
+            res.json({ notfound: "The Record Doesnt Exists" }).send();
+        }
+        else {
+
+            const imageurl = `https://${ip.address()}:${process.env.PORT}/api/pdf/${result.siteName}`
+
+            qrcode.toDataURL(imageurl, function (err, url) {
+                res.render('index', { data: result, time: date, qrcodeImage: url }, (err, data) => {
+                    if (err) {
+                        res.send(err);
+                    } else {
+                        pdf.create(data, options).toFile("./pdfs/report.pdf", function (err, data) {
+                            if (err) {
+                                res.send(err);
+                            } else {
+                                res.sendFile(data.filename);
+                            }
+                        });
+                    }
+                })
+            })
+
+        }
+
+    }).catch(err => {
+        res.json({ foundError: err._message }).send();
+    })
 
 })
 

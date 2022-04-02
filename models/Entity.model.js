@@ -7,12 +7,14 @@ const Site = Schema({
     'siteAddress': String,
     'siteContactNumber': Number,
     'hardware': [{ type: Schema.Types.ObjectId, ref: 'HardwareModel' }],
+    'extraHardware': String,
 })
 const Hardware = Schema({
     'location': String,
     'Notes': String,
     'type': String,
     'MakeModel': String,
+    'function': String,
     'ServiceTagSerialNo': String,
     'CPU': String,
     'RAM': Number,
@@ -23,6 +25,7 @@ const Hardware = Schema({
     'PowerSettoNever': Boolean,
     "sourceFile": String,
     "RaidLevel": String,
+    "additionalSoftware": String,
     "OS": [{
         "OSname": String,
         "OSVersion": String,
