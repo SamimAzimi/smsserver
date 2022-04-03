@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <style>
         table {
             width: 100%;
-            margin:10px;
-        }
-        ul {
-            display: flex;
-            flex-direction: column;
+            margin:8px;
         }
         header {
             background-color:blue;
@@ -26,34 +21,22 @@
         tr {
             background-color: gainsboro;
         }
-        li {
-            list-style: none;
-            display: flex;
-          
-        }
         .SiteInfo {
             margin:0;
             background-color: blue;
             color:white;
         }
-        .listBullets {
-            /* padding-right: 50%; */
-        }
       .qrcode {
           position: absolute;
           right:0;
           top:0;
-          width: 90px;
-    }
-
-      
-      
-     
+          width: 98px;
+    } 
     </style>
 </head>
 <body>
    
-    <table class="siteheader">
+    <table>
         <img class="qrcode" src="<%= qrcodeImage %>" alt="QRCODE" />
         <tr>
             <td>
@@ -74,13 +57,13 @@
         </tr>
         <tr>
         <td>
-           Site Name: <%= data.siteName %> 
+           Name: <%= data.siteName %> 
         </td>
         <td>
-           Site Address: <%= data.siteAddress %> 
+           Address: <%= data.siteAddress %> 
         </td>
         <td>
-           Site Contact #: <%= data.siteContactNumber %> 
+           Contact #: <%= data.siteContactNumber %> 
         </td>
     </tr>
     </table>
@@ -112,11 +95,8 @@
             </tr>
             <% }); %>
     </table> 
-
     <% data.hardware.forEach(function(hw){ %>
-    <h4 class="SiteInfo" ></h4>
-    <table class="finalConfig">
-       
+    <table >  
             <h4 class="SiteInfo">Final
             Configuration
             Of

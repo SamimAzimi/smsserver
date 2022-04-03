@@ -12,9 +12,9 @@ const Site = Schema({
 const Hardware = Schema({
     'location': String,
     'Notes': String,
-    'type': String,
+    'type': String, // net to done 
     'MakeModel': String,
-    'function': String,
+    'functions': String,
     'ServiceTagSerialNo': String,
     'CPU': String,
     'RAM': Number,

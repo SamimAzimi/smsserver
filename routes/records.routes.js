@@ -42,10 +42,14 @@ router.post('/site', (req, res) => {
     })
 })
 router.post('/hardwaretoapp', (req, res) => {
-    const id = req.body.recordID
     var hw = new HardwareModel(req.body.data)
+    // hw.apps.push(req.body.data.apps)
+    // hw.network.push(req.body.data.network)
+    // hw.OS.push(req.body.data.OS)
+    // hw.DB.push(req.body.data.DB)
+    console.log(hw)
     hw.save().then((result, err) => {
-        console.log('err', err)
+        if (err) console.log('err', err)
         if (result) {
             SiteModel.findById({ _id: req.body.recordID }).then(resultsite => {
                 resultsite.hardware.push(result._id)
@@ -102,107 +106,6 @@ router.post('/addtohardware', (req, res) => {
     }
 })
 
-
-
-router.post('/record', async (req, res) => {
-    const RecordExist = await RecordModel.findOne({ siteName: req.body.siteName })
-    if (!RecordExist) {
-        var record = new RecordModel(req.body)
-        record.save().then(() => res.send('Record Saved Successfully')).catch(err => {
-            res.send(err._message)
-            console.log(err)
-
-        })
-
-    } else {
-        res.send(`a Site by the Name ${req.body.siteName} Already Exist`)
-    }
-
-})
-
-
-router.post('/options', (req, res) => {
-
-
-    if (req.body.options == 2) {
-        var findRecord = RecordModel.find({ 'siteContactNumber': req.body.query }).limit(100).then(result => {
-            if (result.length === 0) {
-
-                res.json({ notfound: "The Record Doesnt Exists" }).send();
-            }
-            else {
-                res.send(result)
-            }
-        }).catch(err => {
-            console.log(err)
-            res.send(err._message)
-        })
-    }
-    if (req.body.options == 3) {
-        var findRecord = RecordModel.find({ 'hardware.MakeModel': req.body.query }).limit(100).then(result => {
-            if (result.length === 0) {
-
-                res.json({ notfound: "The Record Doesnt Exists" }).send();
-            }
-            else {
-                res.send(result)
-            }
-
-        }).catch(err => {
-            console.log(err)
-            res.send(err._message)
-        })
-    }
-    if (req.body.options == 4) {
-        var findRecord = RecordModel.find({ 'hardware.ServiceTagSerialNo': req.body.query }).limit(100).then(result => {
-            if (result.length === 0) {
-
-                res.json({ notfound: "The Record Doesnt Exists" }).send();
-            }
-            else {
-                res.send(result)
-            }
-
-        }).catch(err => {
-            console.log(err)
-            res.send(err._message)
-        })
-    }
-    if (req.body.options == 5) {
-        var findRecord = RecordModel.find({ 'apps.appsName': req.body.query }).limit(100).then(result => {
-            if (result.length === 0) {
-
-                res.json({ notfound: "The Record Doesnt Exists" }).send();
-            }
-            else {
-                res.send(result)
-            }
-
-        }).catch(err => {
-            console.log(err)
-            res.send(err._message)
-        })
-    }
-    if (req.body.options == 6) {
-        var findRecord = RecordModel.find({ 'apps.appsVersion': req.body.query }).limit(100).then(result => {
-            if (result.length === 0) {
-
-                res.json({ notfound: "The Record Doesnt Exists" }).send();
-            }
-            else {
-                res.send(result)
-            }
-
-        }).catch(err => {
-            console.log(err)
-            res.send(err._message)
-        })
-    }
-
-
-})
-
-
 router.get('/pdf/:siteName', (req, res) => {
     var html = fs.readFileSync("views/index.ejs", "utf8");
     const options = {
@@ -216,16 +119,15 @@ router.get('/pdf/:siteName', (req, res) => {
         if (result === null) {
             res.json({ notfound: "The Record Doesnt Exists" }).send();
         }
-        else {
+        if (result !== null) {
 
-            const imageurl = `https://${ip.address()}:${process.env.PORT}/api/pdf/${result.siteName}`
-
+            const imageurl = `https://servicemanagementsystem.herokuapp.com/api/pdf/${result.siteName}`
             qrcode.toDataURL(imageurl, function (err, url) {
                 res.render('index', { data: result, time: date, qrcodeImage: url }, (err, data) => {
                     if (err) {
                         res.send(err);
                     } else {
-                        pdf.create(data, options).toFile("./pdfs/report.pdf", function (err, data) {
+                        pdf.create(data, options).toFile(`./pdfs/${result.siteName}_${Date.now()}.pdf`, function (err, data) {
                             if (err) {
                                 res.send(err);
                             } else {
