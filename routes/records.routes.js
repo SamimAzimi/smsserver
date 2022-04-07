@@ -34,11 +34,8 @@ router.post('/siteName', (req, res) => {
 router.post('/site', (req, res) => {
     var site = new SiteModel(req.body)
     site.save().then((result, err) => {
-        if (err) console.log('err', err)
-        console.log(result)
-        res.json({ found: result._id }).send()
-
-
+        if (err) console.log('err', err)    
+        res.json({ found: result}).send()
     }).catch(err => {
         console.log(err)
     })
